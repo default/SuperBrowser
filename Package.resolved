@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "WindowInstanceManager",
+        "repositoryURL": "https://github.com/default/WindowInstanceManager",
+        "state": {
+          "branch": null,
+          "revision": "97be4952f15e55ac9a50fe7156555968c41009f5",
+          "version": "0.1.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

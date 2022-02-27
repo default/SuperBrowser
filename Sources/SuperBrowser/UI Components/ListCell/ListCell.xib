@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="36" id="KGk-i7-Jjw" customClass="ListCell" customModule="SuperBrowser">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="fitingo ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5s-oI-21d">
+                        <rect key="frame" x="32" y="10.5" width="78.5" height="15.5"/>
+                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Nikita Mikheev" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYY-Ru-TqU">
+                        <rect key="frame" x="292" y="10.5" width="110" height="15.5"/>
+                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="13"/>
+                        <color key="textColor" systemColor="systemGrayColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syD-CE-i2p" userLabel="Inset View">
+                        <rect key="frame" x="0.0" y="0.0" width="20" height="36"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="Gsn-5L-VQL"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pax-e1-ld8">
+                        <rect key="frame" x="118.5" y="25" width="165.5" height="1"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.059999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="UVr-Bg-mUj"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mYY-Ru-TqU" firstAttribute="leading" secondItem="pax-e1-ld8" secondAttribute="trailing" constant="8" id="6hx-C5-zZW"/>
+                    <constraint firstAttribute="trailing" secondItem="mYY-Ru-TqU" secondAttribute="trailing" constant="12" id="HwV-2L-QdG"/>
+                    <constraint firstItem="f5s-oI-21d" firstAttribute="leading" secondItem="syD-CE-i2p" secondAttribute="trailing" constant="12" id="L4m-tl-Dc8"/>
+                    <constraint firstItem="syD-CE-i2p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="OMI-cD-wQW"/>
+                    <constraint firstItem="pax-e1-ld8" firstAttribute="leading" secondItem="f5s-oI-21d" secondAttribute="trailing" constant="8" id="TRk-HI-X9C"/>
+                    <constraint firstItem="f5s-oI-21d" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VCu-N4-bn9"/>
+                    <constraint firstAttribute="bottom" secondItem="syD-CE-i2p" secondAttribute="bottom" id="Xh0-C1-E2p"/>
+                    <constraint firstItem="mYY-Ru-TqU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="f5s-oI-21d" secondAttribute="trailing" constant="8" id="bVH-Rm-S45"/>
+                    <constraint firstAttribute="bottom" secondItem="pax-e1-ld8" secondAttribute="bottom" constant="10" id="qkp-yp-oFc"/>
+                    <constraint firstItem="syD-CE-i2p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qna-Lt-Xrr"/>
+                    <constraint firstItem="mYY-Ru-TqU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="suV-LN-3hH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="insetWidth" destination="Gsn-5L-VQL" id="TZv-fX-W5A"/>
+                <outlet property="titleLabel" destination="f5s-oI-21d" id="Hnr-KF-UOc"/>
+                <outlet property="valueLabel" destination="mYY-Ru-TqU" id="aGF-sK-rga"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="141.29464285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
