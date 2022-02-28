@@ -15,6 +15,11 @@ final class RootRouter {
             SystemModule().build(), animated: true
         )
     }
+    private func routeToPersistentData() {
+        viewController?.navigationController?.pushViewController(
+            PersistentDataModule().build(), animated: true
+        )
+    }
 }
 
 // MARK: - RootRouting
@@ -28,6 +33,8 @@ extension RootRouter: RootRouting {
         switch item {
         case .system:
             routeToSystem()
+        case .persistentData:
+            routeToPersistentData()
         default:
             return
         }

@@ -33,6 +33,8 @@ final class ListViewController<Presenter: ListViewPresenter>:
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        title = presenter.controllerTitle
     }
     
     // MARK: Lifecycle

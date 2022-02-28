@@ -10,7 +10,7 @@ import UIKit
 enum RootMenuItem: String, MenuItemProtocol, CaseIterable {
     
     case system
-//    case persistentData
+    case persistentData
 //    case network
 //    case logs
 //    case files
@@ -23,8 +23,8 @@ enum RootMenuItem: String, MenuItemProtocol, CaseIterable {
         switch self {
         case .system:
             return "⚙️"
-//        case .persistentData:
-//            return "📇"
+        case .persistentData:
+            return "📇"
 //        case .network:
 //            return "🌐"
 //        case .logs:
@@ -35,8 +35,8 @@ enum RootMenuItem: String, MenuItemProtocol, CaseIterable {
     }
     var title: String {
         switch self {
-//        case .persistentData:
-//            return "Persistent Data"
+        case .persistentData:
+            return "Persistent Data"
         default:
             return rawValue.capitalized
         }

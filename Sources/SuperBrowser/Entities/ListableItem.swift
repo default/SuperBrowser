@@ -68,9 +68,14 @@ extension String: ListValueRepresentable {
         "\"" + description + "\""
     }
 }
+extension NSString: ListValueRepresentable {
+    public var valueDescription: String {
+        (self as String).valueDescription
+    }
+}
 
 // Collections
-extension Array: ListValueRepresentable where Element: ListValueRepresentable {
+extension Array: ListValueRepresentable {
     public var valueDescription: String {
         isEmpty ? "[∅]" : "[...]"
     }
@@ -86,7 +91,7 @@ extension Array: ListValueRepresentable where Element: ListValueRepresentable {
             items.append(
                 ListItem(
                     title: index.description,
-                    value: self[index]
+                    value: self[index] as? ListValueRepresentable ?? "⌧"
                 )
             )
         }
@@ -94,6 +99,15 @@ extension Array: ListValueRepresentable where Element: ListValueRepresentable {
         return items
     }
 }
+extension NSArray: ListValueRepresentable {
+    public var valueDescription: String {
+        (self as Array).valueDescription
+    }
+    public var sublist: [ListItem]? {
+        (self as Array).sublist
+    }
+}
+
 extension Set: ListValueRepresentable {
     public var valueDescription: String {
         isEmpty ? "[∅]" : "set [...]"
@@ -111,7 +125,6 @@ extension Set: ListValueRepresentable {
         }
     }
 }
-
 
 // Dictionary
 extension Dictionary: ListValueRepresentable {
@@ -145,11 +158,36 @@ extension Dictionary where Key: Comparable {
         }
     }
 }
+extension NSDictionary: ListValueRepresentable {
+    public var valueDescription: String {
+        (self as Dictionary).valueDescription
+    }
+    public var sublist: [ListItem]? {
+        (self as Dictionary).sublist
+    }
+}
+
+// Date
+extension Date: ListValueRepresentable {
+    public var valueDescription: String {
+        ValueFormatter.formatted(self)
+    }
+}
+extension NSDate: ListValueRepresentable {
+    public var valueDescription: String {
+        ValueFormatter.formatted(self as Date)
+    }
+}
 
 // Data
 extension Data: ListValueRepresentable {
     public var valueDescription: String {
         "<Data>"
+    }
+}
+extension NSData: ListValueRepresentable {
+    public var valueDescription: String {
+        (self as Data).valueDescription
     }
 }
 

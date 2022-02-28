@@ -1,16 +1,17 @@
 //
-//  SystemPresenter.swift
+//  ListViewPresenter.swift
 //  Created by Nikita Mikheev on 28.02.2022.
 //
 
-import Foundation
 import UIKit
 
-final class SystemPresenter {
+final class ListPresenter {
     // MARK: Subtypes
     private typealias Model = ListCell.Model
     
     // MARK: Properties
+    var controllerTitle: String?
+    
     private var sectionTitles: [String]?
     private var sectionModels: [[Model]]?
     
@@ -19,8 +20,10 @@ final class SystemPresenter {
     
     // MARK: Initializers
     init(
+        title: String,
         dataSource: ListProviding
     ) {
+        self.controllerTitle = title
         self.dataSource = dataSource
     }
     
@@ -75,11 +78,7 @@ final class SystemPresenter {
 }
 
 // MARK: - ListViewPresenter
-extension SystemPresenter: ListViewPresenter {
-    var controllerTitle: String? {
-        "System"
-    }
-    
+extension ListPresenter: ListViewPresenter {
     func viewDidLoad() {
         makeData()
     }

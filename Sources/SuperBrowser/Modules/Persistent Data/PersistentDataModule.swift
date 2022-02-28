@@ -1,15 +1,14 @@
 //
-//  SystemModule.swift
+//  PersistentDataModule.swift
 //  Created by Nikita Mikheev on 28.02.2022.
 //
 
 import Foundation
 import UIKit
 
-struct SystemModule {
+struct PersistentDataModule {
     typealias View = UIViewController
     
-    // MARK: Factories
     func build() -> View {
         guard let dataSource = SuperBrowser.shared.dataSource else {
             assertionFailure("Mising dataSource in shared instance")
@@ -17,8 +16,8 @@ struct SystemModule {
         }
         
         let presenter = ListPresenter(
-            title: "System",
-            dataSource: dataSource.systemListProvider
+            title: "Persistent Data",
+            dataSource: dataSource.persistentDataListProvider
         )
         let controller = ListViewController<ListPresenter>(
             presenter: presenter
