@@ -10,6 +10,7 @@ import UIKit
 enum RootMenuItem: String, MenuItemProtocol, CaseIterable {
     
     case system
+    case remoteConfig
     case persistentData
 //    case network
 //    case logs
@@ -23,6 +24,8 @@ enum RootMenuItem: String, MenuItemProtocol, CaseIterable {
         switch self {
         case .system:
             return "⚙️"
+        case .remoteConfig:
+            return "🔧"
         case .persistentData:
             return "📇"
 //        case .network:
@@ -35,6 +38,8 @@ enum RootMenuItem: String, MenuItemProtocol, CaseIterable {
     }
     var title: String {
         switch self {
+        case .remoteConfig:
+            return "Remote Config"
         case .persistentData:
             return "Persistent Data"
         default:

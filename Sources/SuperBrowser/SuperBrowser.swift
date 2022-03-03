@@ -17,6 +17,7 @@ public protocol SuperBrowserDataSource: AnyObject {
     var application: UIApplication { get }
     
     var systemListProvider: ListProviding { get }
+    var remoteConfigListProvider: ListProviding { get }
     var persistentDataListProvider: ListProviding { get }
 }
 

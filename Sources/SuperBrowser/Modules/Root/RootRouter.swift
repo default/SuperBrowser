@@ -15,6 +15,11 @@ final class RootRouter {
             SystemModule().build(), animated: true
         )
     }
+    private func routeToRemoteConfig() {
+        viewController?.navigationController?.pushViewController(
+            RemoteConfigModule().build(), animated: true
+        )
+    }
     private func routeToPersistentData() {
         viewController?.navigationController?.pushViewController(
             PersistentDataModule().build(), animated: true
@@ -33,6 +38,8 @@ extension RootRouter: RootRouting {
         switch item {
         case .system:
             routeToSystem()
+        case .remoteConfig:
+            routeToRemoteConfig()
         case .persistentData:
             routeToPersistentData()
         default:

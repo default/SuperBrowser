@@ -19,7 +19,22 @@ public struct ListItem {
     }
 }
 
+enum ListValueException: ListValueRepresentable {
+    
+    case unsupported
+    
+    var valueDescription: String {
+        switch self {
+        case .unsupported:
+            return "⌧"
+        }
+    }
+    var sublist: [ListItem]? { nil }
+}
+
 public protocol ListValueRepresentable {
+    var unsupported: ListValueRepresentable { get }
+    
     var valueDescription: String { get }
     var sublist: [ListItem]? { get }
 }
@@ -29,6 +44,9 @@ public extension ListValueRepresentable where Self: CustomStringConvertible {
     }
 }
 public extension ListValueRepresentable {
+    var unsupported: ListValueRepresentable {
+        ListValueException.unsupported
+    }
     var sublist: [ListItem]? { nil }
 }
 
@@ -91,7 +109,7 @@ extension Array: ListValueRepresentable {
             items.append(
                 ListItem(
                     title: index.description,
-                    value: self[index] as? ListValueRepresentable ?? "⌧"
+                    value: self[index] as? ListValueRepresentable ?? unsupported
                 )
             )
         }
@@ -120,7 +138,7 @@ extension Set: ListValueRepresentable {
         return map {
             ListItem(
                 title: "",
-                value: $0 as? ListValueRepresentable ?? "⌧"
+                value: $0 as? ListValueRepresentable ?? unsupported
             )
         }
     }
@@ -139,7 +157,7 @@ extension Dictionary: ListValueRepresentable {
         return keys.map { key in
             ListItem(
                 title: (key as? CustomStringConvertible)?.description ?? "⌧",
-                value: self[key] as? ListValueRepresentable ?? "⌧"
+                value: self[key] as? ListValueRepresentable ?? unsupported
             )
         }
     }
@@ -153,7 +171,7 @@ extension Dictionary where Key: Comparable {
         return keys.sorted(by: <).map { key in
             ListItem(
                 title: (key as? CustomStringConvertible)?.description ?? "⌧",
-                value: self[key] as? ListValueRepresentable ?? "⌧"
+                value: self[key] as? ListValueRepresentable ?? unsupported
             )
         }
     }
