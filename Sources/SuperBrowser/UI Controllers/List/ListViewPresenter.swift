@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class ListPresenter {
+final class ListViewPresenter {
     // MARK: Subtypes
     private typealias Model = ListCell.Model
     
@@ -77,8 +77,8 @@ final class ListPresenter {
     
 }
 
-// MARK: - ListViewPresenter
-extension ListPresenter: ListViewPresenter {
+// MARK: - ListViewPresenting
+extension ListViewPresenter: ListViewPresenting {
     func viewDidLoad() {
         makeData()
     }

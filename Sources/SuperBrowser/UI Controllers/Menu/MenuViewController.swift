@@ -5,9 +5,8 @@
 
 import UIKit
 
-protocol MenuViewPresenter: ViewDelegate {
-    var items: [MenuItemProtocol] { get }
-    
+protocol MenuViewPresenting: ViewDelegate {
+    var sections: [MenuSection] { get }
     func didUserSelect(item: MenuItemProtocol)
 }
 
@@ -23,8 +22,8 @@ final class MenuViewController<Presenter: MenuViewPresenter>:
     )
     
     // MARK: Properties
-    private var items: [MenuItemProtocol] {
-        presenter.items
+    private var sections: [MenuSection] {
+        presenter.sections
     }
     
     // MARK: Initializers
@@ -53,7 +52,11 @@ final class MenuViewController<Presenter: MenuViewPresenter>:
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let item = items[indexPath.row]
+        guard let item = self.item(at: indexPath) else {
+            assertionFailure("No item at indexPath \(indexPath)")
+            return
+        }
+        
         presenter.didUserSelect(item: item)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -61,16 +64,47 @@ final class MenuViewController<Presenter: MenuViewPresenter>:
     }
     
     // MARK: UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items.count
+        sections[section].items.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = items[indexPath.row]
+        guard let item = self.item(at: indexPath) else {
+            return UITableViewCell()
+        }
         
         let cell = tableView.dequeue(MenuCell.self)
         cell.accessoryType = .disclosureIndicator
         cell.configure(with: item)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard sections.count > section else {
+            return nil
+        }
+        
+        let title = sections[section].title
+        guard !title.isEmpty else {
+            return nil
+        }
+        
+        return title
+    }
+    
+    // MARK: Support
+    private func item(at indexPath: IndexPath) -> MenuItemProtocol? {
+        guard sections.count > indexPath.section else {
+            return nil
+        }
+        
+        guard sections[indexPath.section].items.count > indexPath.row else {
+            return nil
+        }
+        
+        return sections[indexPath.section].items[indexPath.row]
     }
 }

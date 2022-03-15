@@ -15,10 +15,7 @@ public protocol SuperBrowserProtocol: AnyObject {
 
 public protocol SuperBrowserDataSource: AnyObject {
     var application: UIApplication { get }
-    
-    var systemListProvider: ListProviding { get }
-    var remoteConfigListProvider: ListProviding { get }
-    var persistentDataListProvider: ListProviding { get }
+    var rootMenu: MenuProviding { get }
 }
 
 public final class SuperBrowser {
@@ -66,10 +63,13 @@ extension SuperBrowser: SuperBrowserProtocol {
         
         guard window == nil else {
             // Already launched
+            // TODO: Allow multiple windows to be launched simultaneously
             return
         }
         
-        let controller = RootModule().build()
+        let controller = ModuleAssembler(
+            module: .menu("SuperBrowser", dataSource.rootMenu)
+        ).build()
         let navi = NavigationController(
             rootViewController: controller
         )

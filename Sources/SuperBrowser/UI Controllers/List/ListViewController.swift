@@ -5,7 +5,7 @@
 
 import UIKit
 
-protocol ListViewPresenter: ViewDelegate {
+protocol ListViewPresenting: ViewDelegate {
     var numberOfSections: Int { get }
     func titleForSection(atIndex index: Int) -> String?
     func numberOfItems(inSection index: Int) -> Int
@@ -14,7 +14,7 @@ protocol ListViewPresenter: ViewDelegate {
     func didUserSelect(item index: Int, section: Int)
 }
 
-final class ListViewController<Presenter: ListViewPresenter>:
+final class ListViewController<Presenter: ListViewPresenting>:
     PresentedController<Presenter>,
     UITableViewDataSource,
     UITableViewDelegate

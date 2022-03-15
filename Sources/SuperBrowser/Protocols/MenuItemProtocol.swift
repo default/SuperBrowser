@@ -5,7 +5,7 @@
 
 import UIKit
 
-protocol MenuItemProtocol {
+public protocol MenuItemProtocol {
     var id: String { get }
     var icon: Character { get }
     var title: String { get }
