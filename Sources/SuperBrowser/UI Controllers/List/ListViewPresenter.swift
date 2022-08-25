@@ -29,7 +29,7 @@ final class ListViewPresenter {
     
     // MARK: Internal
     private func makeData() {
-        let sections = dataSource.makeSetions()
+        let sections = dataSource.makeSections()
         
         var sectionTitles = [String]()
         sectionTitles.reserveCapacity(sections.count)

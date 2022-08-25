@@ -5,37 +5,40 @@
 
 import UIKit
 
-protocol ReusableNibCell where Self: UITableViewCell {
-    static var nib: UINib { get }
-    static var reuseIdentifier: String { get }
-}
-extension ReusableNibCell {
+extension NSObject {
     static var className: String {
         String(describing: self)
     }
+}
+
+protocol ReusableNibCell where Self: UITableViewCell {
+    static var nib: UINib { get }
+}
+extension ReusableNibCell {
     static var nib: UINib {
         UINib(
             nibName: className,
             bundle: .module
         )
     }
-    static var reuseIdentifier: String {
-        className
-    }
 }
 
 // MARK: - UITableView + ReusableCellRepresentable
 extension UITableView {
-    func register(_ cell: ReusableNibCell.Type) {
-        register(cell.nib, forCellReuseIdentifier: cell.reuseIdentifier)
-    }
-    func register(_ cells: [ReusableNibCell.Type]) {
-        for cell in cells {
-            register(cell)
+    fileprivate func register(_ cell: UITableViewCell.Type) {
+        guard !(cell is ReusableNibCell.Type) else {
+            registerNibCell(cell as! ReusableNibCell.Type)
+            return
         }
+        
+        register(cell, forCellReuseIdentifier: cell.className)
     }
-    func dequeue<Cell: ReusableNibCell>(_ cellType: Cell.Type) -> Cell {
+    fileprivate func registerNibCell(_ cell: ReusableNibCell.Type) {
+        register(cell.nib, forCellReuseIdentifier: cell.className)
+    }
+    
+    func dequeue<Cell: UITableViewCell>(_ cellType: Cell.Type) -> Cell {
         register(cellType)
-        return dequeueReusableCell(withIdentifier: cellType.reuseIdentifier) as! Cell
+        return dequeueReusableCell(withIdentifier: cellType.className) as! Cell
     }
 }

@@ -40,6 +40,22 @@ struct ModuleAssembler {
             view = ListViewController(
                 presenter: presenter
             )
+            
+        // Log
+        case let .log(title, logProvider):
+            let router = LogViewRouter()
+            let presenter = LogViewPresenter(
+                title: title,
+                provider: logProvider,
+                router: router
+            )
+            let viewController = LogViewController(
+                presenter: presenter
+            )
+            
+            presenter.view = viewController
+            router.view = viewController
+            view = viewController
         }
         
         return view

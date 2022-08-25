@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol ListProviding {
-    func makeSetions() -> [ListSection]
+    func makeSections() -> [ListSection]
 }

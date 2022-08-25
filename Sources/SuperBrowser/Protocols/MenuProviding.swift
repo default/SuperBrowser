@@ -8,6 +8,7 @@ import Foundation
 public enum Module {
     case menu(String, MenuProviding)
     case list(String, ListProviding)
+    case log(String, LogProviding)
 }
 
 public protocol MenuProviding {
